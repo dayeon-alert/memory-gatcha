@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useRef } from 'react';
 import Cropper from 'react-cropper';
 import styled from "styled-components";
+import 'cropperjs/dist/cropper.css';
 
 const ModalWrap = styled.div`
   background-color:rgba(0,0,0,.3);
