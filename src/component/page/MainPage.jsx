@@ -438,7 +438,7 @@ function MainPage() {
   const [bgModalOpen, setBgModalOpen] = useState(false);
   const [cropPersonImg, setCropPersonImg] = useState(null);
   const [rangeAlignValue, setRangeAlignValue] = useState(50);
-  const [rangePaddingValue, setRangePaddingValue] = useState(50);
+  const [rangePaddingValue, setRangePaddingValue] = useState(75);
   const [cropBgImg, setCropBgImg] = useState("./image/initBackground.png");
   const [personLayer, setPersonLayer] = useState("");
   const [urlMergeData, setUrlMergeData] = useState("");
@@ -459,9 +459,14 @@ function MainPage() {
   }
 
   const bgImgCropHandler = async (targetImg) => {
-    const randomKey = await handleSpin();
-    // ?sig=${Math.floor(Math.random() * 100) + 1} -> sig를 적용할 경우 여러 개의 키워드 중 하나만 기준으로 검색
-    const targetImgSrc = targetImg !== null ? targetImg : `https://source.unsplash.com/random/${canvasSize[0]}x${canvasSize[1]}/?${randomKey[0]},${randomKey[1]},${randomKey[2]}}`
+    let targetImgSrc = targetImg;
+
+    if(targetImgSrc === null) {
+      const randomKey = await handleSpin();
+      // ?sig=${Math.floor(Math.random() * 100) + 1} -> sig를 적용할 경우 여러 개의 키워드 중 하나만 기준으로 검색
+      targetImgSrc = `https://source.unsplash.com/random/${canvasSize[0]}x${canvasSize[1]}/?${randomKey[0]},${randomKey[1]},${randomKey[2]}}`
+    }
+
     setCropBgImg(targetImgSrc);
   }
 
@@ -575,17 +580,17 @@ function MainPage() {
         <Doors className="doors">
           <Door className="door">
             <div className="boxes">
-              <div class="box" style={{width: "64px", height: "80px", filter: "blur(0px)"}}>❓</div>
+              <div className="box" style={{width: "64px", height: "80px", filter: "blur(0px)"}}>❓</div>
             </div>
           </Door>
           <Door className="door">
             <div className="boxes">
-              <div class="box" style={{width: "64px", height: "80px", filter: "blur(0px)"}}>❓</div>
+              <div className="box" style={{width: "64px", height: "80px", filter: "blur(0px)"}}>❓</div>
             </div>
           </Door>
           <Door className="door">
             <div className="boxes">
-              <div class="box" style={{width: "64px", height: "80px", filter: "blur(0px)"}}>❓</div>
+              <div className="box" style={{width: "64px", height: "80px", filter: "blur(0px)"}}>❓</div>
             </div>
           </Door>
         </Doors>
